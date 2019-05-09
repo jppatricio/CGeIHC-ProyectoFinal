@@ -1,2 +1,5 @@
 # CGeIHC-ProyectoFinal
-Proyecto Final CGeIHC - Edificio Q
+Elaboración del Edificio Q utilizando OpenGL con C++
+
+# Uso
+Leer el archivo "Manual de uso.txt" para conocer más sobre el programa.
