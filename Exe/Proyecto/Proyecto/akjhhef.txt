@@ -1,0 +1,2 @@
+Pegar el .exe que está en debug
+Pegar los dlls (ultimas 4 en debug)
