@@ -37,6 +37,7 @@ Sphere sphere(20, 20);
 Cylinder cylinder(20, 20, 0.5, 0.5);
 Box box;
 Box boxWater;
+Box windowsBox;
 
 Sphere sphereAnimacion(20, 20);
 Cylinder cylinderAnimacion(20, 20, 0.5, 0.5);
@@ -57,7 +58,7 @@ Model modelAirCraft;
 Model arturito;
 Model modelTrain;
 
-GLuint textureID1, textureID2, textureID3, textureCespedID, textureWaterID, textureCubeTexture, textureMetalID;
+GLuint textureID1, textureCespedID, textureWaterID, pared_q, puerta_principal, ventana1, ventana2;
 GLuint cubeTextureID;
 
 std::vector<std::vector<glm::mat4>> getKeyFrames(std::string fileName) {
@@ -122,12 +123,12 @@ GLenum types[6] = {
 };
 
 std::string fileNames[6] = { 
-	"../../Textures/mp_bloodvalley/blood-valley_ft.tga",
-	"../../Textures/mp_bloodvalley/blood-valley_bk.tga",
-	"../../Textures/mp_bloodvalley/blood-valley_up.tga",
-	"../../Textures/mp_bloodvalley/blood-valley_dn.tga",
-	"../../Textures/mp_bloodvalley/blood-valley_rt.tga",
-	"../../Textures/mp_bloodvalley/blood-valley_lf.tga"
+	"../../Textures/ame_rocky/rockyvalley_ft.tga",
+	"../../Textures/ame_rocky/rockyvalley_bk.tga",
+	"../../Textures/ame_rocky/rockyvalley_up.tga",
+	"../../Textures/ame_rocky/rockyvalley_dn.tga",
+	"../../Textures/ame_rocky/rockyvalley_rt.tga",
+	"../../Textures/ame_rocky/rockyvalley_lf.tga"
 };
 
 int screenWidth;
@@ -230,6 +231,9 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	box.scaleUVS(glm::vec2(100.0, 100.0));
 	boxWater.init();
 	boxWater.scaleUVS(glm::vec2(1.0, 1.0));
+	windowsBox.init();
+	windowsBox.scaleUVS(glm::vec2(1.0, 1.0));
+
 	modelRock.loadModel("../../models/rock/rock.obj");
 	modelRail.loadModel("../../models/railroad/railroad_track.obj");
 	modelAirCraft.loadModel("../../models/Aircraft_obj/E 45 Aircraft_obj.obj");
@@ -257,46 +261,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture.freeImage(bitmap);
 
-	// Texture Goku
-	texture = Texture("../../Textures/goku.png");
-	bitmap = texture.loadImage(false);
-	data = texture.convertToData(bitmap, imageWidth, imageHeight);
-	glGenTextures(1, &textureID2);
-	glBindTexture(GL_TEXTURE_2D, textureID2);
-	// set the texture wrapping parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	// set texture filtering parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	if (data) {
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-	else
-		std::cout << "Failed to load texture" << std::endl;
-	texture.freeImage(bitmap);
-
-	// Textura cuadritos
-	texture = Texture("../../Textures/test.png");
-	bitmap = texture.loadImage(false);
-	data = texture.convertToData(bitmap, imageWidth, imageHeight);
-	glGenTextures(1, &textureID3);
-	glBindTexture(GL_TEXTURE_2D, textureID3);
-	// set the texture wrapping parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	// set texture filtering parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	if (data) {
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-	else
-		std::cout << "Failed to load texture" << std::endl;
-	texture.freeImage(bitmap);
-
+	//textura cesped
 	texture = Texture("../../Textures/cesped.jpg");
 	bitmap = texture.loadImage(false);
 	data = texture.convertToData(bitmap, imageWidth, imageHeight);
@@ -316,6 +281,69 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture.freeImage(bitmap);
 
+	//texturas-----------------------------:::::::::::::::::::::::::::VENTANAS::::::::::::::::::::::::::::::
+	texture = Texture("../../Textures/puerta_principal.png");
+	bitmap = texture.loadImage(false);
+	data = texture.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &puerta_principal);
+	glBindTexture(GL_TEXTURE_2D, puerta_principal);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture.freeImage(bitmap);
+
+	texture = Texture("../../Textures/ventana1.png");
+	bitmap = texture.loadImage(false);
+	data = texture.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &ventana1);
+	glBindTexture(GL_TEXTURE_2D, ventana1);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture.freeImage(bitmap);
+
+	texture = Texture("../../Textures/ventana2.png");
+	bitmap = texture.loadImage(false);
+	data = texture.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &ventana2);
+	glBindTexture(GL_TEXTURE_2D, ventana2);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture.freeImage(bitmap);
+
+	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::...
+
+	//textura metal
+	texture = Texture("../../Textures/pared_q.png");
+	bitmap = texture.loadImage(false);
+	data = texture.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &pared_q);
+	glBindTexture(GL_TEXTURE_2D, pared_q);
+	// set the texture wrapping parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	// set texture filtering parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture.freeImage(bitmap);
+
+	//textura metal
 	texture = Texture("../../Textures/water2.jpg");
 	bitmap = texture.loadImage(false);
 	data = texture.convertToData(bitmap, imageWidth, imageHeight);
@@ -335,25 +363,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture.freeImage(bitmap);
 
-	texture = Texture("../../Textures/metal.jpg");
-	bitmap = texture.loadImage(false);
-	data = texture.convertToData(bitmap, imageWidth, imageHeight);
-	glGenTextures(1, &textureMetalID);
-	glBindTexture(GL_TEXTURE_2D, textureMetalID);
-	// set the texture wrapping parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	// set texture filtering parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	if (data) {
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-	else
-		std::cout << "Failed to load texture" << std::endl;
-	texture.freeImage(bitmap);
-
+	// SKYBOX
 	glGenTextures(1, &cubeTextureID);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, cubeTextureID);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);	// set texture wrapping to GL_REPEAT (default wrapping method)
@@ -461,6 +471,143 @@ bool processInput(bool continueApplication) {
 	return continueApplication;
 }
 
+void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
+
+	//::::::::::::::::::::::::::::::::: SOLID WALLS ::::::::::::::::::::::::::::::::::
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, pared_q);
+	box.setShader(&shaderLighting);
+	box.setProjectionMatrix(projection);
+	box.setViewMatrix(view);
+	//1
+	box.setPosition(glm::vec3(-12.5, 5.5, 25));
+	box.setScale(glm::vec3(11.0, 11, 0.3));
+	box.render();
+	//2
+	box.setPosition(glm::vec3(-7, 5.5, 20));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//3
+	box.setPosition(glm::vec3(-7, 5.5, 15));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//4
+	box.setPosition(glm::vec3(-7, 5.5, 10));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//5
+	box.setPosition(glm::vec3(-7, 5.5, 5));
+	box.setScale(glm::vec3(1.0, 11, .5));
+	box.render();
+	//6
+	box.setPosition(glm::vec3(-2.33, 5.5, 4.5));
+	box.setScale(glm::vec3(0.3, 11, 1.0));
+	box.render();
+	//7
+	box.setPosition(glm::vec3(2.33, 5.5, 4.5));
+	box.setScale(glm::vec3(0.3, 11, 1.0));
+	box.render();
+	//8
+	box.setPosition(glm::vec3(7, 5.5, 5));
+	box.setScale(glm::vec3(1.0, 11, 1.0));
+	box.render();
+	//9
+	box.setPosition(glm::vec3(7, 5.5, 10));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//10 
+	box.setPosition(glm::vec3(12.5, 5.5, 15));
+	box.setScale(glm::vec3(11, 11, 0.3));
+	box.render();
+
+
+	//TECHOS
+	box.setPosition(glm::vec3(0, 2.5, 0));
+	box.setScale(glm::vec3(14, 1, 10));
+	box.render();
+
+	box.setPosition(glm::vec3(0, 5.5, 0));
+	box.setScale(glm::vec3(14, 1, 10));
+	box.render();
+
+	box.setPosition(glm::vec3(0, 8.5, 0));
+	box.setScale(glm::vec3(14, 1, 10));
+	box.render();
+
+	box.setPosition(glm::vec3(0, 12, 0));
+	box.setScale(glm::vec3(14, 2, 10));
+	box.render();
+
+	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	//:::::::::::::::::::::::::::::::::WINDOWS::::::::::::::::::::::::::::::::::
+	// puerta principal
+	glBindTexture(GL_TEXTURE_2D, puerta_principal);
+	windowsBox.setShader(&shaderLighting);
+	windowsBox.setProjectionMatrix(projection);
+	windowsBox.setViewMatrix(view);
+
+	windowsBox.setPosition(glm::vec3(0, 1, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+	// ventanas 1er nivel
+	glBindTexture(GL_TEXTURE_2D, ventana2);
+	windowsBox.setShader(&shaderLighting);
+	windowsBox.setProjectionMatrix(projection);
+	windowsBox.setViewMatrix(view);
+
+	windowsBox.setPosition(glm::vec3(4.66, 1, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-4.66, 1, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+	// ventanas otros niveles
+	glBindTexture(GL_TEXTURE_2D, ventana1);
+	windowsBox.setShader(&shaderLighting);
+	windowsBox.setProjectionMatrix(projection);
+	windowsBox.setViewMatrix(view);
+
+	windowsBox.setPosition(glm::vec3(0, 4, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(4.66, 4, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-4.66, 4, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(0, 7, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(4.66, 7, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-4.66, 7, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(0, 10, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(4.66, 10, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-4.66, 10, 4.5));
+	windowsBox.setScale(glm::vec3(4.66, 2, .1));
+	windowsBox.render();
+
+
+}
+
 void applicationLoop() {
 	bool psi = true;
 	double lastTime = TimeManager::Instance().GetTime();
@@ -504,7 +651,9 @@ void applicationLoop() {
 		shaderTexture.turnOn();
 		// Importante si se quiere renderizar modelos y texturas
 		glActiveTexture(GL_TEXTURE0);
-		cylinder.setShader(&shaderTexture);
+
+		// ELIMINAR
+		/*cylinder.setShader(&shaderTexture);
 		cylinder.setProjectionMatrix(projection);
 		cylinder.setViewMatrix(view);
 		cylinder.setPosition(glm::vec3(-3.0f, 2.0f, -3.0f));
@@ -521,7 +670,7 @@ void applicationLoop() {
 		cylinder.setProjectionMatrix(projection);
 		cylinder.setViewMatrix(view);
 		cylinder.setPosition(glm::vec3(0.0, 0.0, 0.0));
-		cylinder.setScale(glm::vec3(1.0, 1.0, 1.0));
+		cylinder.setScale(glm::vec3(1.0, 1.0, 1.0));*/
 		
 		// Iluminación
 		glm::mat4 lightModelmatrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(1.0f, 0.0f, 0.0f));
@@ -531,13 +680,13 @@ void applicationLoop() {
 		glUniform3fv(shaderMateriales.getUniformLocation("light.position"), 1, glm::value_ptr(glm::vec3(lightModelmatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f))));
 		glUniform3fv(shaderMateriales.getUniformLocation("viewPos"), 1, glm::value_ptr(camera->getPosition()));
 		glUniform3f(shaderMateriales.getUniformLocation("light.ambient"), 0.2, 0.2, 0.2);
-		glUniform3f(shaderMateriales.getUniformLocation("light.diffuse"), 0.2, 0.3, 0.6);
+		glUniform3f(shaderMateriales.getUniformLocation("light.diffuse"), 0.3, 0.3, 0.3);
 		glUniform3f(shaderMateriales.getUniformLocation("light.specular"), 0.5, 0.3, 0.2);
 		glUniform3f(shaderMateriales.getUniformLocation("material.ambient"), 1.0, 0.2, 0.6);
 		glUniform3f(shaderMateriales.getUniformLocation("material.diffuse"), 0.4, 0.5, 0.8);
 		glUniform3f(shaderMateriales.getUniformLocation("material.specular"), 0.5, 0.3, 0.2);
 		glUniform1f(shaderMateriales.getUniformLocation("material.shininess"), 32.0);
-		cylinder.render();
+		/*cylinder.render();*/
 		shaderMateriales.turnOff();
 
 		shaderLighting.turnOn();
@@ -557,8 +706,8 @@ void applicationLoop() {
 		glUniform1f(shaderLighting.getUniformLocation("pointLights[0].linear"), 0.14f);
 		glUniform1f(shaderLighting.getUniformLocation("pointLights[0].quadratics"), 0.07f);
 		glUniform3f(shaderLighting.getUniformLocation("pointLights[0].light.ambient"), 0.025, 0.025, 0.025);
-		glUniform3f(shaderLighting.getUniformLocation("pointLights[0].light.diffuse"), 0.2, 0.3, 0.15);
-		glUniform3f(shaderLighting.getUniformLocation("pointLights[0].light.specular"), 0.5, 0.1, 0.2);
+		glUniform3f(shaderLighting.getUniformLocation("pointLights[0].light.diffuse"), 0.2, 0.2, 0.2);
+		glUniform3f(shaderLighting.getUniformLocation("pointLights[0].light.specular"), 0.2, 0.2, 0.2);
 		// Spot light
 		glUniform3fv(shaderLighting.getUniformLocation("spotLights[0].position"), 1, glm::value_ptr(camera->getPosition()));
 		glUniform3fv(shaderLighting.getUniformLocation("spotLights[0].direction"), 1, glm::value_ptr(camera->getFront()));
@@ -568,32 +717,25 @@ void applicationLoop() {
 		glUniform1f(shaderLighting.getUniformLocation("spotLights[0].linear"), 0.14f);
 		glUniform1f(shaderLighting.getUniformLocation("spotLights[0].quadratics"), 0.07f);
 		glUniform3f(shaderLighting.getUniformLocation("spotLights[0].light.ambient"), 0.025, 0.025, 0.025);
-		glUniform3f(shaderLighting.getUniformLocation("spotLights[0].light.diffuse"), 0.7, 0.2, 0.6);
-		glUniform3f(shaderLighting.getUniformLocation("spotLights[0].light.specular"), 0.1, 0.7, 0.8);
+		glUniform3f(shaderLighting.getUniformLocation("spotLights[0].light.diffuse"), 0.7, 0.7, 0.7);
+		glUniform3f(shaderLighting.getUniformLocation("spotLights[0].light.specular"), 0.7, 0.7, 0.7);
 		shaderLighting.turnOff();
 
-		modelRock.setShader(&shaderLighting);
+		/*modelRock.setShader(&shaderLighting);
 		modelRock.setProjectionMatrix(projection);
 		modelRock.setViewMatrix(view);
 		modelRock.setPosition(glm::vec3(5.0, 3.0, -20.0));
 		modelRock.setScale(glm::vec3(1.0, 1.0, 1.0));
-		modelRock.render();
+		modelRock.render();*/
 
-		modelRail.setShader(&shaderLighting);
-		modelRail.setProjectionMatrix(projection);
-		modelRail.setViewMatrix(view);
-		modelRail.setPosition(glm::vec3(-10.0, 0.0, 25.0));
-		modelRail.setScale(glm::vec3(1.0, 1.0, 1.0));
-		modelRail.render();
-
-		modelAirCraft.setShader(&shaderLighting);
+		/*modelAirCraft.setShader(&shaderLighting);
 		modelAirCraft.setProjectionMatrix(projection);
 		modelAirCraft.setViewMatrix(view);
 		modelAirCraft.setScale(glm::vec3(1.0, 1.0, 1.0));
 		glm::mat4 matrixAirCraft = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, aircraftZ));
 		matrixAirCraft = glm::translate(matrixAirCraft, glm::vec3(10.0, 2.0, 15.0));
 		matrixAirCraft = glm::rotate(matrixAirCraft, rotationAirCraft, glm::vec3(0, 1, 0));
-		modelAirCraft.render(matrixAirCraft);
+		modelAirCraft.render(matrixAirCraft);*/
 
 		glm::quat firstQuat;
 		glm::quat secondQuat;
@@ -604,7 +746,7 @@ void applicationLoop() {
 		glm::vec4 finalTrans;
 
 		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, textureID3);//          v----Numero de articulaciones + 1
+		glBindTexture(GL_TEXTURE_2D, pared_q);//          v----Numero de articulaciones + 1
 		if (keyFramesBrazo[indexKeyFrameBrazoCurr].size() == 7 && keyFramesBrazo[indexKeyFrameBrazoNext].size() == 7) {
 
 			//Matriz de rotación actual
@@ -743,16 +885,6 @@ void applicationLoop() {
 			indexKeyFrameBrazoNext = 1;
 		}
 
-
-		/*arturito.setShader(&shaderLighting);
-		arturito.setProjectionMatrix(projection);
-		arturito.setViewMatrix(view);
-		arturito.setScale(glm::vec3(1.0, 1.0, 1.0));
-		glm::mat4 matrixArturito = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, aircraftZ));
-		matrixArturito = glm::translate(matrixArturito, glm::vec3(-10.0, 2.0, 15.0));
-		matrixArturito = glm::rotate(matrixArturito, rotationAirCraft, glm::vec3(0, 1, 0));
-		arturito.render(matrixArturito);*/
-
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureCespedID);
 		box.setShader(&shaderLighting);
@@ -761,6 +893,8 @@ void applicationLoop() {
 		box.setPosition(glm::vec3(0.0, 0.0, 0.0));
 		box.setScale(glm::vec3(100.0, 0.001, 100.0));
 		box.render();
+
+		renderizarEdificio(view, projection);
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureWaterID);

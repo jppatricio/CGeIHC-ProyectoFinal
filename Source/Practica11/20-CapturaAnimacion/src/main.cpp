@@ -53,7 +53,7 @@ Model modelAirCraft;
 Model arturito;
 Model modelTrain;
 
-GLuint textureID1, textureID2, textureID3, textureCespedID, textureWaterID, textureCubeTexture, textureMetalID;
+GLuint textureID1, textureID2, textureID3, textureCespedID, textureWaterID, textureCubeTexture, pared_q;
 GLuint cubeTextureID;
 
 float rot1 = 0.0f, rot2 = 0.0, rot3 = 0.0, rot4 = 0.0, rot5 = 0.0;
@@ -290,8 +290,8 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	texture = Texture("../../Textures/metal.jpg");
 	bitmap = texture.loadImage(false);
 	data = texture.convertToData(bitmap, imageWidth, imageHeight);
-	glGenTextures(1, &textureMetalID);
-	glBindTexture(GL_TEXTURE_2D, textureMetalID);
+	glGenTextures(1, &pared_q);
+	glBindTexture(GL_TEXTURE_2D, pared_q);
 	// set the texture wrapping parameters
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -499,7 +499,7 @@ void applicationLoop() {
 		sphereAnimacion.setViewMatrix(view);
 
 		// Se utiliza la textura de piel
-		glBindTexture(GL_TEXTURE_2D, textureMetalID);
+		glBindTexture(GL_TEXTURE_2D, pared_q);
 		
 		glm::mat4 matrixL0 = glm::mat4(1.0f);
 		
