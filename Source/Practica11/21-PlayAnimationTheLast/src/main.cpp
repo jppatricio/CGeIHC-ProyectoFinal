@@ -58,7 +58,7 @@ Model modelAirCraft;
 Model arturito;
 Model modelTrain;
 
-GLuint textureID1, textureCespedID, textureWaterID, pared_q, puerta_principal, ventana1, ventana2;
+GLuint textureID1, textureCespedID, textureWaterID, pared_q, puerta_principal, ventana1, ventana2, ventana3;
 GLuint cubeTextureID;
 
 std::vector<std::vector<glm::mat4>> getKeyFrames(std::string fileName) {
@@ -363,6 +363,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture.freeImage(bitmap);
 
+
 	// SKYBOX
 	glGenTextures(1, &cubeTextureID);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, cubeTextureID);
@@ -641,6 +642,15 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.setScale(glm::vec3(4.66, 2, .1));
 	windowsBox.render();
 
+	// ventanas izq
+	glBindTexture(GL_TEXTURE_2D, ventana3);
+	windowsBox.setShader(&shaderLighting);
+	windowsBox.setProjectionMatrix(projection);
+	windowsBox.setViewMatrix(view);
+
+	box.setPosition(glm::vec3(-7, 5.5, 5));
+	box.setScale(glm::vec3(1.0, 11, .5));
+	box.render();
 
 }
 
