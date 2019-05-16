@@ -69,12 +69,12 @@ GLenum types[6] = {
 };
 
 std::string fileNames[6] = { 
-	"../../Textures/mp_bloodvalley/blood-valley_ft.tga",
-	"../../Textures/mp_bloodvalley/blood-valley_bk.tga",
-	"../../Textures/mp_bloodvalley/blood-valley_up.tga",
-	"../../Textures/mp_bloodvalley/blood-valley_dn.tga",
-	"../../Textures/mp_bloodvalley/blood-valley_rt.tga",
-	"../../Textures/mp_bloodvalley/blood-valley_lf.tga"
+	"../../Textures/ame_rocky/rockyvalley_ft.tga",
+	"../../Textures/ame_rocky/rockyvalley_bk.tga",
+	"../../Textures/ame_rocky/rockyvalley_up.tga",
+	"../../Textures/ame_rocky/rockyvalley_dn.tga",
+	"../../Textures/ame_rocky/rockyvalley_rt.tga",
+	"../../Textures/ame_rocky/rockyvalley_lf.tga"
 };
 
 int screenWidth;
