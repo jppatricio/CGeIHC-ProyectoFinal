@@ -54,3 +54,9 @@ void FirstPersonCamera::moveRightCamera(bool dir, float dt) {
 		this->position -= (float)dt * speed * this->right;
 	updateCamera();
 }
+
+void FirstPersonCamera::setYawPitch(float yawX, float pitchY) {
+	yaw = yawX;
+	pitch = pitchY;
+	updateCamera();
+}

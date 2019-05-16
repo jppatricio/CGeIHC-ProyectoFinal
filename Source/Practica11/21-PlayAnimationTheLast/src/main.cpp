@@ -238,7 +238,8 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelRail.loadModel("../../models/railroad/railroad_track.obj");
 	modelAirCraft.loadModel("../../models/Aircraft_obj/E 45 Aircraft_obj.obj");
 
-	camera->setPosition(glm::vec3(0.0f, 0.0f, 0.4f));
+	camera->setPosition(glm::vec3(0.0f, 17.0f, 30.0f));
+	camera->setYawPitch(-89.0f, -25.0f);
 	
 	// Textura Ladrillos
 	int imageWidth, imageHeight;
@@ -468,6 +469,18 @@ bool processInput(bool continueApplication) {
 		camera->moveRightCamera(false, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera->moveRightCamera(true, deltaTime);
+	//Tecla G para isométrico
+	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+	{
+		camera->setYawPitch(-50.0f,-25.0f);
+		camera->setPosition(glm::vec3(-38.0f, 25.0f, 50.0f));
+	}
+	//Tecla H para ir al salón
+	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS) {
+		camera->setPosition(glm::vec3(5.0f, 10.0f, -10.0f));
+		camera->setYawPitch(0.0f, -15.0f);
+	}
+		
 	glfwPollEvents();
 	return continueApplication;
 }

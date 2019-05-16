@@ -16,6 +16,7 @@ public:
 	void updateCamera();
 	void moveFrontCamera(bool dir, float dt);
 	void moveRightCamera(bool dir, float dt);
+	void setYawPitch(float yawX, float pitchY);
 };
 
 #endif // FIRSTPERSONCAMERA_H
