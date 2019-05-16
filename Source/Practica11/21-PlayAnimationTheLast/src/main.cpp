@@ -322,6 +322,19 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture.freeImage(bitmap);
 
+	texture = Texture("../../Textures/ventana3.png");
+	bitmap = texture.loadImage(false);
+	data = texture.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &ventana3);
+	glBindTexture(GL_TEXTURE_2D, ventana3);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture.freeImage(bitmap);
+
 	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::...
 
 	//textura metal
@@ -661,9 +674,9 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.setProjectionMatrix(projection);
 	windowsBox.setViewMatrix(view);
 
-	box.setPosition(glm::vec3(-7, 5.5, 5));
-	box.setScale(glm::vec3(1.0, 11, .5));
-	box.render();
+	windowsBox.setPosition(glm::vec3(-7, 1.0, 7.33));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
 
 }
 
