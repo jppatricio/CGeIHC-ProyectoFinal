@@ -674,8 +674,72 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.setProjectionMatrix(projection);
 	windowsBox.setViewMatrix(view);
 
-	windowsBox.setPosition(glm::vec3(-7, 1.0, 7.33));
+	//PB
+	windowsBox.setPosition(glm::vec3(-7.5, 1.0, 7.53));
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 1.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 1.0, 17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 1.0, 22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	//P1
+	windowsBox.setPosition(glm::vec3(-7.5, 4.0, 7.53));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 4.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 4.0, 17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 4.0, 22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	//P2
+	windowsBox.setPosition(glm::vec3(-7.5, 7.0, 7.53));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 7.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 7.0, 17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 7.0, 22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	//P3
+	windowsBox.setPosition(glm::vec3(-7.5, 10.0, 7.53));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 10.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 10.0, 17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-7.5, 10.0, 22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
 	windowsBox.render();
 
 }
