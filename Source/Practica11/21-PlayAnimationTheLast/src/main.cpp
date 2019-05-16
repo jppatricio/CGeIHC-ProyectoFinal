@@ -538,6 +538,42 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	box.setScale(glm::vec3(14, 2, 10));
 	box.render();
 
+	box.setPosition(glm::vec3(12.5, 2.5, -8));
+	box.setScale(glm::vec3(11, 1, 46));
+	box.render();
+
+	box.setPosition(glm::vec3(12.5, 5.5, -8));
+	box.setScale(glm::vec3(11, 1, 46));
+	box.render();
+
+	box.setPosition(glm::vec3(12.5, 8.5, -8));
+	box.setScale(glm::vec3(11, 1, 46));
+	box.render();
+
+	box.setPosition(glm::vec3(12.5, 12, -8));
+	box.setScale(glm::vec3(11, 2, 46));
+	box.render();
+
+	//::::::::::
+	box.setPosition(glm::vec3(-12.5, 2.5, 7.5));
+	box.setScale(glm::vec3(11, 1, 35));
+	box.render();
+
+	box.setPosition(glm::vec3(-12.5, 5.5, 7.5));
+	box.setScale(glm::vec3(11, 1, 35));
+	box.render();
+
+	box.setPosition(glm::vec3(-12.5, 8.5, 7.5));
+	box.setScale(glm::vec3(11, 1, 35));
+	box.render();
+
+	box.setPosition(glm::vec3(-12.5, 12, 7.5));
+	box.setScale(glm::vec3(11, 2, 35));
+	box.render();
+	//::::::::::
+
+
+
 	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 	//:::::::::::::::::::::::::::::::::WINDOWS::::::::::::::::::::::::::::::::::
