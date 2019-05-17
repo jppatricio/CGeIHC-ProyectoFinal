@@ -38,6 +38,7 @@ Cylinder cylinder(20, 20, 0.5, 0.5);
 Box box;
 Box boxWater;
 Box windowsBox;
+Box boxStone;
 
 Sphere sphereAnimacion(20, 20);
 Cylinder cylinderAnimacion(20, 20, 0.5, 0.5);
@@ -58,7 +59,7 @@ Model modelAirCraft;
 Model arturito;
 Model modelTrain;
 
-GLuint textureID1, textureCespedID, textureWaterID, pared_q, puerta_principal, ventana1, ventana2, ventana3;
+GLuint textureID1, textureCespedID, textureWaterID, pared_q, puerta_principal, ventana1, ventana2, ventana3, piedra;
 GLuint cubeTextureID;
 
 std::vector<std::vector<glm::mat4>> getKeyFrames(std::string fileName) {
@@ -233,6 +234,8 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	boxWater.scaleUVS(glm::vec2(1.0, 1.0));
 	windowsBox.init();
 	windowsBox.scaleUVS(glm::vec2(1.0, 1.0));
+	boxStone.init();
+	boxStone.scaleUVS(glm::vec2(1.0, 1.0));
 
 	modelRock.loadModel("../../models/rock/rock.obj");
 	modelRail.loadModel("../../models/railroad/railroad_track.obj");
@@ -335,8 +338,39 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture.freeImage(bitmap);
 
-	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::...
+	//:::::::::::::::::::::::::::::::::::::PIEDRA::::::::::::::::::::::::::::::::::
+	/*texture = Texture("../../Textures/cobblestone.png");
+	bitmap = texture.loadImage(false);
+	data = texture.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &piedra);
+	glBindTexture(GL_TEXTURE_2D, piedra);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture.freeImage(bitmap);*/
+	texture = Texture("../../Textures/piedranegra.jpg");
+	bitmap = texture.loadImage(false);
+	data = texture.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &piedra);
+	glBindTexture(GL_TEXTURE_2D, piedra);
+	// set the texture wrapping parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	// set texture filtering parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture.freeImage(bitmap);
 
+	//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 	//textura metal
 	texture = Texture("../../Textures/pared_q.png");
 	bitmap = texture.loadImage(false);
@@ -1244,6 +1278,31 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
 	windowsBox.render();
 	//Fin ventanas
+
+	//:::::::::::::::::::::::::::::::::PIEDRA::::::::::::::::::::::::::::::::::
+	//jardinera
+	glBindTexture(GL_TEXTURE_2D, piedra);
+	boxStone.setShader(&shaderLighting);
+	boxStone.setProjectionMatrix(projection);
+	boxStone.setViewMatrix(view);
+	boxStone.setOrientation(glm::vec3(0.0, 0.0, -90.0));
+
+	boxStone.setPosition(glm::vec3(1.0, 0.5, 17.0));
+	boxStone.setScale(glm::vec3(1.0, 1.0f, 5.0f));
+	boxStone.render();
+
+	boxStone.setPosition(glm::vec3(-1.0, 0.5, 17.0));
+	boxStone.setScale(glm::vec3(1.0, 1.0f, 5.0f));
+	boxStone.render();
+
+	boxStone.setPosition(glm::vec3(0.0, 0.5, 20.0));
+	boxStone.setScale(glm::vec3(1.0, 3.0f, 1.0f));
+	boxStone.render();
+
+	boxStone.setPosition(glm::vec3(0.0, 0.5, 14.0));
+	boxStone.setScale(glm::vec3(1.0, 3.0f, 1.0f));
+	boxStone.render();
+
 }
 
 void applicationLoop() {
