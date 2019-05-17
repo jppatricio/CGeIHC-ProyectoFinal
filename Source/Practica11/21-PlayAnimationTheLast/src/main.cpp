@@ -511,15 +511,15 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	box.setScale(glm::vec3(11.0, 11, 0.3));
 	box.render();
 	//2
-	box.setPosition(glm::vec3(-7, 5.5, 20));
+	box.setPosition(glm::vec3(-7.5, 5.5, 20));
 	box.setScale(glm::vec3(1.0, 11, 0.3));
 	box.render();
 	//3
-	box.setPosition(glm::vec3(-7, 5.5, 15));
+	box.setPosition(glm::vec3(-7.5, 5.5, 15));
 	box.setScale(glm::vec3(1.0, 11, 0.3));
 	box.render();
 	//4
-	box.setPosition(glm::vec3(-7, 5.5, 10));
+	box.setPosition(glm::vec3(-7.5, 5.5, 10));
 	box.setScale(glm::vec3(1.0, 11, 0.3));
 	box.render();
 	//5
@@ -539,7 +539,7 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	box.setScale(glm::vec3(1.0, 11, 1.0));
 	box.render();
 	//9
-	box.setPosition(glm::vec3(7, 5.5, 10));
+	box.setPosition(glm::vec3(7.5, 5.5, 10));
 	box.setScale(glm::vec3(1.0, 11, 0.3));
 	box.render();
 	//10 
@@ -547,6 +547,109 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	box.setScale(glm::vec3(11, 11, 0.3));
 	box.render();
 
+	//11
+	box.setPosition(glm::vec3(7, 5.5, -5.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//12
+	box.setPosition(glm::vec3(7.5, 5.5, -10.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//13
+	box.setPosition(glm::vec3(7.5, 5.5, -15.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//14
+	box.setPosition(glm::vec3(7.5, 5.5, -20.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//15
+	box.setPosition(glm::vec3(7.5, 5.5, -25.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//16 
+	box.setPosition(glm::vec3(12.5, 5.5, -31.0));
+	box.setScale(glm::vec3(11, 11, 0.3));
+	box.render();
+
+	//17
+	box.setPosition(glm::vec3(17.5, 5.5, 10.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//18
+	box.setPosition(glm::vec3(17.5, 5.5, 4.25));
+	box.setScale(glm::vec3(1.25, 11, 3.5));
+	box.render();
+	//19
+	box.setPosition(glm::vec3(17.5, 5.5, 0.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//20
+	box.setPosition(glm::vec3(17.5, 5.5, -5.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//21
+	box.setPosition(glm::vec3(17.5, 5.5, -10.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//22
+	box.setPosition(glm::vec3(17.5, 5.5, -15.75));
+	box.setScale(glm::vec3(1.25, 11, 3.5));
+	box.render();
+	//22
+	box.setPosition(glm::vec3(17.5, 5.5, -20.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//23
+	box.setPosition(glm::vec3(17.5, 5.5, -25.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+
+	//24
+	box.setPosition(glm::vec3(-12.5, 5.5, -10.0));
+	box.setScale(glm::vec3(11.0, 11, 0.3));
+	box.render();
+	//25
+	box.setPosition(glm::vec3(-17.5, 5.5, -5.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//26
+	box.setPosition(glm::vec3(-17.5, 5.5, 0.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//27
+	box.setPosition(glm::vec3(-17.5, 5.5, 5.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//28
+	box.setPosition(glm::vec3(-17.5, 5.5, 10.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//29
+	box.setPosition(glm::vec3(-17.5, 5.5, 15.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+	//28
+	box.setPosition(glm::vec3(-17.5, 5.5, 20.0));
+	box.setScale(glm::vec3(1.0, 11, 0.3));
+	box.render();
+
+	//29
+	box.setPosition(glm::vec3(-7, 5.5, -5));
+	box.setScale(glm::vec3(1.0, 11, .5));
+	box.render();
+	//30
+	box.setPosition(glm::vec3(-2.33, 5.5, -4.5));
+	box.setScale(glm::vec3(0.3, 11, 1.0));
+	box.render();
+	//31
+	box.setPosition(glm::vec3(2.33, 5.5, -4.5));
+	box.setScale(glm::vec3(0.3, 11, 1.0));
+	box.render();
+	//32
+	box.setPosition(glm::vec3(7, 5.5, -5));
+	box.setScale(glm::vec3(1.0, 11, 1.0));
+	box.render();
 
 	//TECHOS
 	box.setPosition(glm::vec3(0, 2.5, 0));
@@ -675,6 +778,10 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.setViewMatrix(view);
 
 	//PB
+	windowsBox.setPosition(glm::vec3(-7.5, 1.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
 	windowsBox.setPosition(glm::vec3(-7.5, 1.0, 7.53));
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
 	windowsBox.render();
@@ -692,6 +799,10 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.render();
 
 	//P1
+	windowsBox.setPosition(glm::vec3(-7.5, 4.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
 	windowsBox.setPosition(glm::vec3(-7.5, 4.0, 7.53));
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
 	windowsBox.render();
@@ -709,6 +820,10 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.render();
 
 	//P2
+	windowsBox.setPosition(glm::vec3(-7.5, 7.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
 	windowsBox.setPosition(glm::vec3(-7.5, 7.0, 7.53));
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
 	windowsBox.render();
@@ -726,6 +841,10 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.render();
 
 	//P3
+	windowsBox.setPosition(glm::vec3(-7.5, 10.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
 	windowsBox.setPosition(glm::vec3(-7.5, 10.0, 7.53));
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
 	windowsBox.render();
@@ -744,6 +863,26 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 
 	// ventanas derecha
 	//PB
+	windowsBox.setPosition(glm::vec3(7.5, 1.0, -28.0));
+	windowsBox.setScale(glm::vec3(0.1, 2, 5.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 1.0, -22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 1.0, -17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 1.0, -12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 1.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
 	windowsBox.setPosition(glm::vec3(7.5, 1.0, 7.53));
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
 	windowsBox.render();
@@ -753,6 +892,26 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.render();
 
 	//P1
+	windowsBox.setPosition(glm::vec3(7.5, 4.0, -28.0));
+	windowsBox.setScale(glm::vec3(0.1, 2, 5.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 4.0, -22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 4.0, -17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 4.0, -12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 4.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
 	windowsBox.setPosition(glm::vec3(7.5, 4.0, 7.53));
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
 	windowsBox.render();
@@ -762,6 +921,26 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.render();
 
 	//P2
+	windowsBox.setPosition(glm::vec3(7.5, 7.0, -28.0));
+	windowsBox.setScale(glm::vec3(0.1, 2, 5.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 7.0, -22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 7.0, -17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 7.0, -12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 7.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
 	windowsBox.setPosition(glm::vec3(7.5, 7.0, 7.53));
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
 	windowsBox.render();
@@ -771,6 +950,26 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.render();
 
 	//P3
+	windowsBox.setPosition(glm::vec3(7.5, 10.0, -28.0));
+	windowsBox.setScale(glm::vec3(0.1, 2, 5.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 10.0, -22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 10.0, -17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 10.0, -12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(7.5, 10.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
 	windowsBox.setPosition(glm::vec3(7.5, 10.0, 7.53));
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
 	windowsBox.render();
@@ -779,6 +978,272 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
 	windowsBox.render();
 
+	// ventanas derecha externas
+	//PB
+	windowsBox.setPosition(glm::vec3(17.5, 1.0, -28.0));
+	windowsBox.setScale(glm::vec3(0.1, 2, 5.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 1.0, -22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 1.0, -17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 1.0, -12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 1.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 1.0, -2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 1.0, 2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 1.0, 7.53));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 1.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	//P1
+	windowsBox.setPosition(glm::vec3(17.5, 4.0, -28.0));
+	windowsBox.setScale(glm::vec3(0.1, 2, 5.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 4.0, -22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 4.0, -17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 4.0, -12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 4.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 4.0, -2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 4.0, 2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 4.0, 7.53));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 4.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	//P2
+	windowsBox.setPosition(glm::vec3(17.5, 7.0, -28.0));
+	windowsBox.setScale(glm::vec3(0.1, 2, 5.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 7.0, -22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 7.0, -17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 7.0, -12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 7.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 7.0, -2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 7.0, 2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 7.0, 7.53));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 7.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	//P3
+	windowsBox.setPosition(glm::vec3(17.5, 10.0, -28.0));
+	windowsBox.setScale(glm::vec3(0.1, 2, 5.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 10.0, -22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 10.0, -17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 10.0, -12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 10.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 10.0, -2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 10.0, 2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 10.0, 7.53));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(17.5, 10.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	// ventanas izquierda externas
+	//PB
+	windowsBox.setPosition(glm::vec3(-17.5, 1.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 1.0, -2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 1.0, 2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 1.0, 7.53));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 1.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 1.0, 17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 1.0, 22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	//P1
+	windowsBox.setPosition(glm::vec3(-17.5, 4.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 4.0, -2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 4.0, 2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 4.0, 7.53));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 4.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 4.0, 17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 4.0, 22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	//P2
+	windowsBox.setPosition(glm::vec3(-17.5, 7.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 7.0, -2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 7.0, 2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 7.0, 7.53));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 7.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 7.0, 17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 7.0, 22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	//P3
+	windowsBox.setPosition(glm::vec3(-17.5, 10.0, -7.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 10.0, -2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 10.0, 2.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 10.0, 7.53));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.66));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 10.0, 12.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 10.0, 17.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(-17.5, 10.0, 22.50));
+	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
+	windowsBox.render();
+	//Fin ventanas
 }
 
 void applicationLoop() {
