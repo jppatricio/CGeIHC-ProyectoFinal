@@ -39,6 +39,7 @@ Box box;
 Box boxWater;
 Box windowsBox;
 Box boxStone;
+Box windowsBanio;
 
 Sphere sphereAnimacion(20, 20);
 Cylinder cylinderAnimacion(20, 20, 0.5, 0.5);
@@ -59,7 +60,7 @@ Model modelAirCraft;
 Model arturito;
 Model modelTrain;
 
-GLuint textureID1, textureCespedID, textureWaterID, pared_q, puerta_principal, ventana1, ventana2, ventana3, piedra;
+GLuint textureID1, textureCespedID, textureWaterID, pared_q, puerta_principal, ventana1, ventana2, ventana3, piedra, ventana4;
 GLuint cubeTextureID;
 
 std::vector<std::vector<glm::mat4>> getKeyFrames(std::string fileName) {
@@ -236,6 +237,8 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	windowsBox.scaleUVS(glm::vec2(1.0, 1.0));
 	boxStone.init();
 	boxStone.scaleUVS(glm::vec2(1.0, 1.0));
+	windowsBanio.init();
+	windowsBanio.scaleUVS(glm::vec2(1.0, 1.0));
 
 	modelRock.loadModel("../../models/rock/rock.obj");
 	modelRail.loadModel("../../models/railroad/railroad_track.obj");
@@ -330,6 +333,19 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	data = texture.convertToData(bitmap, imageWidth, imageHeight);
 	glGenTextures(1, &ventana3);
 	glBindTexture(GL_TEXTURE_2D, ventana3);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture.freeImage(bitmap);
+
+	texture = Texture("../../Textures/ventana4.png");
+	bitmap = texture.loadImage(false);
+	data = texture.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &ventana4);
+	glBindTexture(GL_TEXTURE_2D, ventana4);
 	if (data) {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
@@ -686,17 +702,302 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	box.render();
 
 	//TECHOS
-	box.setPosition(glm::vec3(0, 2.5, 0));
-	box.setScale(glm::vec3(14, 1, 10));
+	box.setPosition(glm::vec3(0, 2.5, 1.5));
+	box.setScale(glm::vec3(14, 1, 7));
 	box.render();
 
-	box.setPosition(glm::vec3(0, 5.5, 0));
-	box.setScale(glm::vec3(14, 1, 10));
+	box.setPosition(glm::vec3(0, 5.5, 1.5));
+	box.setScale(glm::vec3(14, 1, 7));
 	box.render();
 
-	box.setPosition(glm::vec3(0, 8.5, 0));
-	box.setScale(glm::vec3(14, 1, 10));
+	box.setPosition(glm::vec3(0, 8.5, 1.5));
+	box.setScale(glm::vec3(14, 1, 7));
 	box.render();
+
+	//Para hacer el cubo
+	box.setPosition(glm::vec3(-4.65, 2.5, -3.5));
+	box.setScale(glm::vec3(4.7, 1, 3));
+	box.render();
+
+	box.setPosition(glm::vec3(-4.65, 5.5, -3.5));
+	box.setScale(glm::vec3(4.7, 1, 3));
+	box.render();
+
+	box.setPosition(glm::vec3(-4.65, 8.5, -3.5));
+	box.setScale(glm::vec3(4.7, 1, 3));
+	box.render();
+
+	box.setPosition(glm::vec3(4.65, 2.5, -3.5));
+	box.setScale(glm::vec3(4.7, 1, 3));
+	box.render();
+
+	box.setPosition(glm::vec3(4.65, 5.5, -3.5));
+	box.setScale(glm::vec3(4.7, 1, 3));
+	box.render();
+
+	box.setPosition(glm::vec3(4.65, 8.5, -3.5));
+	box.setScale(glm::vec3(4.7, 1, 3));
+	box.render();
+	//
+
+	//Para hacer los intermedios
+	box.setPosition(glm::vec3(0.0, 1.25, -4.25));
+	box.setScale(glm::vec3(4.4, 0.5, 1.5));
+	box.render();
+
+	box.setPosition(glm::vec3(0.0, 4.0, -4.25));
+	box.setScale(glm::vec3(4.4, 0.5, 1.5));
+	box.render();
+
+	box.setPosition(glm::vec3(0.0, 7.0, -4.25));
+	box.setScale(glm::vec3(4.4, 0.5, 1.5));
+	box.render();
+	//
+
+	//Cubo
+	box.setPosition(glm::vec3(2.33, 5.5, -3.0));
+	box.setScale(glm::vec3(0.3, 11, 2.0));
+	box.render();
+
+	box.setPosition(glm::vec3(0.0, 5.5, -2.75));
+	box.setScale(glm::vec3(0.1, 11, 1.5));
+	box.render();
+
+	box.setPosition(glm::vec3(-2.33, 5.5, -3.0));
+	box.setScale(glm::vec3(0.3, 11, 2.0));
+	box.render();
+	//
+
+	//Paredes escalera
+	box.setPosition(glm::vec3(0, 0.5, -4.8));
+	box.setScale(glm::vec3(4.66, 1.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(0, 8.125, -4.8));
+	box.setScale(glm::vec3(4.66, 1.75, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(0, 8.5, -4.9));
+	box.setScale(glm::vec3(4.66, 1.0, 0.2));
+	box.render();
+
+	box.setPosition(glm::vec3(0, 10.5, -4.8));
+	box.setScale(glm::vec3(4.66, 1.0, 0.1));
+	box.render();
+	//
+
+	//Paredes traseras
+	//PB
+	box.setPosition(glm::vec3(4.66, 0.75, -4.8));
+	box.setScale(glm::vec3(2.33, 1.5, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(6.4075, 1.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(2.9125, 1.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-4.66, 0.75, -4.8));
+	box.setScale(glm::vec3(2.33, 1.5, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-6.4075, 1.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-2.9125, 1.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	//P1
+	box.setPosition(glm::vec3(4.66, 3.75, -4.8));
+	box.setScale(glm::vec3(2.33, 1.5, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(6.4075, 4.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(2.9125, 4.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-4.66, 3.75, -4.8));
+	box.setScale(glm::vec3(2.33, 1.5, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-6.4075, 4.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-2.9125, 4.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	//P2
+	box.setPosition(glm::vec3(4.66, 6.75, -4.8));
+	box.setScale(glm::vec3(2.33, 1.5, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(6.4075, 7.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(2.9125, 7.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-4.66, 6.75, -4.8));
+	box.setScale(glm::vec3(2.33, 1.5, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-6.4075, 7.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-2.9125, 7.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	//P3
+	box.setPosition(glm::vec3(4.66, 9.75, -4.8));
+	box.setScale(glm::vec3(2.33, 1.5, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(6.4075, 10.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(2.9125, 10.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-4.66, 9.75, -4.8));
+	box.setScale(glm::vec3(2.33, 1.5, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-6.4075, 10.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+
+	box.setPosition(glm::vec3(-2.9125, 10.0, -4.8));
+	box.setScale(glm::vec3(1.165, 2.0, 0.1));
+	box.render();
+	//
+
+	//Escaleras PB
+	box.setPosition(glm::vec3(1.1, 0.15, -2.1875));
+	box.setScale(glm::vec3(2.2, 0.3, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(1.1, 0.45, -2.5625));
+	box.setScale(glm::vec3(2.2, 0.3, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(1.1, 0.75, -2.9375));
+	box.setScale(glm::vec3(2.2, 0.3, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(1.1, 1.05, -3.3125));
+	box.setScale(glm::vec3(2.2, 0.3, 0.375));
+	box.render();
+	//Regreso PB
+	box.setPosition(glm::vec3(-1.1, 1.65, -3.3125));
+	box.setScale(glm::vec3(2.2, 0.3, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(-1.1, 1.95, -2.9375));
+	box.setScale(glm::vec3(2.2, 0.3, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(-1.1, 2.25, -2.5625));
+	box.setScale(glm::vec3(2.2, 0.3, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(-1.1, 2.55, -2.1875));
+	box.setScale(glm::vec3(2.2, 0.3, 0.375));
+	box.render();
+	//
+
+	//Escaleras P1
+	box.setPosition(glm::vec3(1.1, 3.125, -2.1875));
+	box.setScale(glm::vec3(2.2, 0.25, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(1.1, 3.375, -2.5625));
+	box.setScale(glm::vec3(2.2, 0.25, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(1.1, 3.625, -2.9375));
+	box.setScale(glm::vec3(2.2, 0.25, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(1.1, 3.875, -3.3125));
+	box.setScale(glm::vec3(2.2, 0.25, 0.375));
+	box.render();
+	//Regreso P1
+	box.setPosition(glm::vec3(-1.1, 4.4, -3.35));
+	box.setScale(glm::vec3(2.2, 0.3, 0.3));
+	box.render();
+
+	box.setPosition(glm::vec3(-1.1, 4.7, -3.05));
+	box.setScale(glm::vec3(2.2, 0.3, 0.3));
+	box.render();
+
+	box.setPosition(glm::vec3(-1.1, 5.0, -2.75));
+	box.setScale(glm::vec3(2.2, 0.3, 0.3));
+	box.render();
+
+	box.setPosition(glm::vec3(-1.1, 5.3, -2.45));
+	box.setScale(glm::vec3(2.2, 0.3, 0.3));
+	box.render();
+
+	box.setPosition(glm::vec3(-1.1, 5.6, -2.15));
+	box.setScale(glm::vec3(2.2, 0.3, 0.3));
+	box.render();
+	//
+
+	//Escaleras P2
+	box.setPosition(glm::vec3(1.1, 6.125, -2.1875));
+	box.setScale(glm::vec3(2.2, 0.25, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(1.1, 6.375, -2.5625));
+	box.setScale(glm::vec3(2.2, 0.25, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(1.1, 6.625, -2.9375));
+	box.setScale(glm::vec3(2.2, 0.25, 0.375));
+	box.render();
+
+	box.setPosition(glm::vec3(1.1, 6.875, -3.3125));
+	box.setScale(glm::vec3(2.2, 0.25, 0.375));
+	box.render();
+	//Regreso P2
+	box.setPosition(glm::vec3(-1.1, 7.4, -3.35));
+	box.setScale(glm::vec3(2.2, 0.3, 0.3));
+	box.render();
+
+	box.setPosition(glm::vec3(-1.1, 7.7, -3.05));
+	box.setScale(glm::vec3(2.2, 0.3, 0.3));
+	box.render();
+
+	box.setPosition(glm::vec3(-1.1, 8.0, -2.75));
+	box.setScale(glm::vec3(2.2, 0.3, 0.3));
+	box.render();
+
+	box.setPosition(glm::vec3(-1.1, 8.3, -2.45));
+	box.setScale(glm::vec3(2.2, 0.3, 0.3));
+	box.render();
+
+	box.setPosition(glm::vec3(-1.1, 8.6, -2.15));
+	box.setScale(glm::vec3(2.2, 0.3, 0.3));
+	box.render();
+	//
+
 
 	box.setPosition(glm::vec3(0, 12, 0));
 	box.setScale(glm::vec3(14, 2, 10));
@@ -804,6 +1105,20 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.setPosition(glm::vec3(-4.66, 10, 4.5));
 	windowsBox.setScale(glm::vec3(4.66, 2, .1));
 	windowsBox.render();
+
+	//Ventanas escaleras
+	windowsBox.setPosition(glm::vec3(0, 2.625, -4.8));
+	windowsBox.setScale(glm::vec3(4.66, 2.25, 0.1));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(0, 5.5, -4.8));
+	windowsBox.setScale(glm::vec3(4.66, 2.5, 0.1));
+	windowsBox.render();
+
+	windowsBox.setPosition(glm::vec3(0, 9.5, -4.8));
+	windowsBox.setScale(glm::vec3(4.66, 1.0, 0.1));
+	windowsBox.render();
+	//
 
 	// ventanas izq
 	glBindTexture(GL_TEXTURE_2D, ventana3);
@@ -1277,6 +1592,50 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	windowsBox.setPosition(glm::vec3(-17.5, 10.0, 22.50));
 	windowsBox.setScale(glm::vec3(0.1, 2, 4.7));
 	windowsBox.render();
+
+	//Ventanas baños
+	glBindTexture(GL_TEXTURE_2D, ventana4);
+	windowsBanio.setShader(&shaderLighting);
+	windowsBanio.setProjectionMatrix(projection);
+	windowsBanio.setViewMatrix(view);
+	windowsBanio.setOrientation(glm::vec3(45.0, 0.0, 0.0));
+
+	//PB
+	windowsBanio.setPosition(glm::vec3(4.66, 1.75, -4.8));
+	windowsBanio.setScale(glm::vec3(2.33, 0.5, 0.1));
+	windowsBanio.render();
+
+	windowsBanio.setPosition(glm::vec3(-4.66, 1.75, -4.8));
+	windowsBanio.setScale(glm::vec3(2.33, 0.5, 0.1));
+	windowsBanio.render();
+
+	//P1
+	windowsBanio.setPosition(glm::vec3(4.66, 4.75, -4.8));
+	windowsBanio.setScale(glm::vec3(2.33, 0.5, 0.1));
+	windowsBanio.render();
+
+	windowsBanio.setPosition(glm::vec3(-4.66, 4.75, -4.8));
+	windowsBanio.setScale(glm::vec3(2.33, 0.5, 0.1));
+	windowsBanio.render();
+
+	//P2
+	windowsBanio.setPosition(glm::vec3(4.66, 7.75, -4.8));
+	windowsBanio.setScale(glm::vec3(2.33, 0.5, 0.1));
+	windowsBanio.render();
+
+	windowsBanio.setPosition(glm::vec3(-4.66, 7.75, -4.8));
+	windowsBanio.setScale(glm::vec3(2.33, 0.5, 0.1));
+	windowsBanio.render();
+
+	//P3
+	windowsBanio.setPosition(glm::vec3(4.66, 10.75, -4.8));
+	windowsBanio.setScale(glm::vec3(2.33, 0.5, 0.1));
+	windowsBanio.render();
+
+	windowsBanio.setPosition(glm::vec3(-4.66, 10.75, -4.8));
+	windowsBanio.setScale(glm::vec3(2.33, 0.5, 0.1));
+	windowsBanio.render();
+	//
 	//Fin ventanas
 
 	//:::::::::::::::::::::::::::::::::PIEDRA::::::::::::::::::::::::::::::::::
@@ -1593,7 +1952,7 @@ void applicationLoop() {
 
 		renderizarEdificio(view, projection);
 
-		glActiveTexture(GL_TEXTURE0);
+		/*glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureWaterID);
 		boxWater.setShader(&shaderLighting);
 		boxWater.setProjectionMatrix(projection);
@@ -1601,7 +1960,7 @@ void applicationLoop() {
 		boxWater.setPosition(glm::vec3(3.0, 2.0, -5.0));
 		boxWater.setScale(glm::vec3(10.0, 0.001, 10.0));
 		boxWater.offsetUVS(glm::vec2(0.0001, 0.0001));
-		boxWater.render();
+		boxWater.render();*/
 
 		if (angle > 2 * M_PI)
 			angle = 0.0;
