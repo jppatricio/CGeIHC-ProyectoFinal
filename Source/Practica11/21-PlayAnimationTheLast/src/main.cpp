@@ -40,6 +40,7 @@ Box boxWater;
 Box windowsBox;
 Box boxStone;
 Box windowsBanio;
+Box leaveBox;
 
 Sphere sphereAnimacion(20, 20);
 Cylinder cylinderAnimacion(20, 20, 0.5, 0.5);
@@ -60,7 +61,7 @@ Model modelAirCraft;
 Model arturito;
 Model modelTrain;
 
-GLuint textureID1, textureCespedID, textureWaterID, pared_q, puerta_principal, ventana1, ventana2, ventana3, piedra, ventana4;
+GLuint textureID1, textureCespedID, textureWaterID, pared_q, puerta_principal, ventana1, ventana2, ventana3, piedra, ventana4, hojas;
 GLuint cubeTextureID;
 
 std::vector<std::vector<glm::mat4>> getKeyFrames(std::string fileName) {
@@ -143,6 +144,11 @@ int lastMousePosX, offsetX;
 int lastMousePosY, offsetY;
 
 double deltaTime;
+
+//Variables de animacion hoja
+float hojaX=1.0, hojaY, hojaYaux=14.0, hojaZ, angulo=0.0f, zSuma;
+bool vuelta1 = true;
+bool vuelta2 = false;
 
 // Se definen todos las funciones.
 void reshapeCallback(GLFWwindow* Window, int widthRes, int heightRes);
@@ -239,6 +245,8 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	boxStone.scaleUVS(glm::vec2(1.0, 1.0));
 	windowsBanio.init();
 	windowsBanio.scaleUVS(glm::vec2(1.0, 1.0));
+	leaveBox.init();
+	leaveBox.scaleUVS(glm::vec2(1.0, 1.0));
 
 	modelRock.loadModel("../../models/rock/rock.obj");
 	modelRail.loadModel("../../models/railroad/railroad_track.obj");
@@ -346,6 +354,19 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	data = texture.convertToData(bitmap, imageWidth, imageHeight);
 	glGenTextures(1, &ventana4);
 	glBindTexture(GL_TEXTURE_2D, ventana4);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture.freeImage(bitmap);
+
+	texture = Texture("../../Textures/Leaves0017_1_S.png");
+	bitmap = texture.loadImage(false);
+	data = texture.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &hojas);
+	glBindTexture(GL_TEXTURE_2D, hojas);
 	if (data) {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
@@ -1661,7 +1682,69 @@ void renderizarEdificio(glm::mat4 view, glm::mat4 projection) {
 	boxStone.setPosition(glm::vec3(0.0, 0.5, 14.0));
 	boxStone.setScale(glm::vec3(1.0, 3.0f, 1.0f));
 	boxStone.render();
+	
+}
 
+void animacionHoja(glm::mat4 view, glm::mat4 projection) {
+
+	glBindTexture(GL_TEXTURE_2D, hojas);
+	leaveBox.setShader(&shaderLighting);
+	leaveBox.setProjectionMatrix(projection);
+	leaveBox.setViewMatrix(view);
+	leaveBox.setScale(glm::vec3(0.2, 0.001f, 0.2f));
+
+	zSuma = 0.0f;
+	for (int i = 0; i < 20; i++) {
+		zSuma += 0.3;
+		leaveBox.setOrientation(glm::vec3(0.0, 0.0, -angulo));
+		leaveBox.setPosition(glm::vec3(2.5 + hojaX, 3.4 + hojaY, 14.0 + zSuma));
+		leaveBox.render();
+
+		leaveBox.setOrientation(glm::vec3(0.0, 0.0, angulo));
+		leaveBox.setPosition(glm::vec3(-2.0 + hojaX, 3.8 + hojaY, 14.0 + zSuma));
+		leaveBox.render();
+	}
+
+	zSuma = 0.0f;
+	for (int i = 0; i < 10; i++) {
+		zSuma += 0.3;
+		leaveBox.setOrientation(glm::vec3(0.0, 0.0, -angulo));
+		leaveBox.setPosition(glm::vec3(-1.0 + zSuma + hojaX, hojaY, 14.0));
+		leaveBox.render();
+
+		leaveBox.setOrientation(glm::vec3(0.0, 0.0, angulo));
+		leaveBox.setPosition(glm::vec3(-1.0 + zSuma + hojaX, hojaY, 20.0));
+		leaveBox.render();
+	}
+
+	hojaX = 1.0*glm::sin(glm::radians(angulo));
+	hojaY = hojaYaux* glm::cos(glm::radians(angulo));
+	hojaYaux -= 0.01f;
+
+	if (hojaYaux <= 0.0f) {
+		hojaYaux = 14.0f;
+	}
+
+	if (vuelta1)
+	{
+		angulo -= 0.2f;
+		if (angulo < -30.0f)
+		{
+			vuelta1 = false;
+			vuelta2 = true;
+		}
+
+	}
+	if (vuelta2)
+	{
+		angulo += 0.2f;
+		if (angulo > 30.0f)
+		{
+			vuelta2 = false;
+			vuelta1 = true;
+		}
+
+	}
 }
 
 void applicationLoop() {
@@ -1951,6 +2034,7 @@ void applicationLoop() {
 		box.render();
 
 		renderizarEdificio(view, projection);
+		animacionHoja(view, projection);
 
 		/*glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureWaterID);
